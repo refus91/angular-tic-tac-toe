@@ -1,0 +1,20 @@
+<div class="flex h-screen bg-gradient-to-r from-gray-100 to-gray-300">
+  <div class="m-auto">
+    <div class="grid gap-2">
+      <app-alert></app-alert>
+      <app-timer></app-timer>
+      <div class="flex justify-center">
+        <span class="text-4xl font-bold">{{ title }}</span>
+      </div>
+      <div class="flex justify-center">
+        <button *ngIf="!gameService.start" [routerLink]="['/board']" (click)="gameService.startGame()" class="animate-bounce px-4 py-2 text-sm font-bold uppercase rounded text-white bg-blue-500 focus:outline-none hover:bg-blue-400">Начать игру</button>
+        <button *ngIf="gameService.start"  (click)="gameService.resetGame()" class="px-4 py-2 text-sm font-bold uppercase rounded text-white bg-blue-500 focus:outline-none hover:bg-blue-400">Сбросить</button>
+        <button [routerLink]="['/winner-table']" (click)="gameService.stopGame()" class="px-4 py-2 text-sm font-bold uppercase rounded text-white bg-teal-500 focus:outline-none hover:bg-teal-400 ml-2">Таблица результатов</button>
+      </div>
+      <div *ngIf="gameService.start" class="flex justify-start items-center">
+        <span class="text-xl text-base">Вы играете за <span [ngClass]="gameService.playerSymbol == 'X' ? 'text-blue-500': 'text-red-500'" class="font-bold">{{gameService.playerSymbol}}</span></span>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

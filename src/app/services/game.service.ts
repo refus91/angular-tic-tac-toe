@@ -117,8 +117,8 @@ export class GameService {
     this.botSelected.push(allDiffCombination[random])
     this.allSelected.push(allDiffCombination[random])
 
-    if (allDiffCombination.length <= 1){
-      this.sendMessage({text: 'Не осталось ходов. Победила дружба', type: 1})
+    if (!allDiffCombination.length){
+      this.sendMessage({text: 'Нет выйгрышных комбинаций. Ничья', type: 1})
       this.endGame = true
       this.stopTimer()
       this.appendToLocalStorage({ date: new Date(), winner: 'НИЧЬЯ', time: this.hr + 'час. ' + this.min + 'мин. ' + this.sec + 'сек. '})
